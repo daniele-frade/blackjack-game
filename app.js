@@ -14,3 +14,16 @@ let playerCards = []
 
 // buttons hit and stand
 
+const hitButtonClicked = () => {
+    // generate a new card
+    const newCard = getRandomCard()
+
+    // add to player's array
+    playerCards.push(newCard)
+
+    // display the image on the player cards space
+    addCardElementToSpace(newCard, 'playerCards')
+
+    // check if user lost the game
+    // ??
+}
