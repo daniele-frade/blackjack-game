@@ -5,10 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
+   
     <title>Blackjack</title>
 </head>
 <body>
-    <h1>Blackjack Game</h1>
+    
+ <!-- Dealer Cards -->
+ <div class="player">
+    <h3 class="playerName">Dealer</h3>
+    <p class="points" id="dealerPoints"></p>
+    <div class="cards" id='dealerCards'>
+        <div class="card empty"></div>
+        <div class="card empty"></div>
+        <div class="card empty"></div>
+        <div class="card empty"></div>
+    </div>
+</div>
+
+<!-- Deck of cards + Question/Game Status -->
+<div id="centralContainer">
+    <div class="card noborder">
+        <card-t
+        rank="0"
+        backcolor="#44F"
+        backtext=""
+        backtextcolor="black"
+        ></card-t>
+    </div>
+    
+    <div id="message">
+        <h2>Blackjack Game</h2>
+        <div class="buttons">
+            <button id="hitButton" disabled>Hit</button>
+            <button id="startGame">Start Playing</button>
+            <button id="standButton" disabled>Stand</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Player Section -->
+<div class="player">
+    <div class="cards" id='playerCards'>
+        <div class="card empty"></div>
+        <div class="card empty"></div>
+        <div class="card empty"></div>
+        <div class="card empty"></div>
+    </div>
+    <p class="points" id="playerPoints"></p>
+    <h3 class="playerName">You</h3>
+</div>
+
+<script src="app.js"></script>
+
 </body>
 </html>
