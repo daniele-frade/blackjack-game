@@ -107,7 +107,9 @@ const startNewGame = () => {
     giveDealerNewCard(randCard2)
     giveDealerNewCard(randCard4)
 
-   
+
+    console.log(dealerPoints)
+    console.log(playerPoints)
 }
 
 // 2 - create button hit
@@ -144,6 +146,8 @@ const standButtonClicked = () => {
 
 }
 
+
+// 4 - add DOM events
 
 
 // calculate points for each player
