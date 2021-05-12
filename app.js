@@ -214,7 +214,7 @@ const hitButtonClicked = () => {
     }
 }
 
-// 3 - creat button stand
+// 3 - create button stand
 const standButtonClicked = () => {
     
      // Disable "Hit" and "Stand" buttons
