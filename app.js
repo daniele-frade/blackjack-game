@@ -205,34 +205,47 @@ const startNewGame = () => {
 const hitButtonClicked = () => {
     // generate a new card
     const newCard = getRandomCard()
-
-    // add to player's array
-    playerCards.push(newCard)
-
-    // display the image on the player cards space
-    addCardElementToSpace(newCard, 'playerCards')
+    givePlayerNewCard(newCard)
 
     // check if user lost the game
-    // ??
+    if (playerPoints > 21) {
+        resetButtonsForNewGame()
+        mainText.textContent = "You LOST. Play Again???"
+    }
 }
 
 // 3 - creat button stand
 const standButtonClicked = () => {
     
-    // Disable "Hit" and "Stand" buttons
-    hitBtn.disabled = true
-    standBtn.disabled = true
-
-    // Flip Dealer's closed card
-    let firstDealerCard = document.querySelector('#dealerCards .card')
-    firstDealerCard.classList.add('empty')
-    firstDealerCard.innerHTML = ''
-    addCardElementToSpace(dealerCards[0], 'dealerCards')
-
-    // Figure out if dealer needs a new card
-
-    // Dealer cannot stand below 17, also they stand between 17 and 20
-
+     // Disable "Hit" and "Stand" buttons
+     hitBtn.disabled = true
+     standBtn.disabled = true
+ 
+     // Flip Dealer's closed card
+     let firstDealerCard = document.querySelector('#dealerCards .card')
+     firstDealerCard.classList.add('empty')
+     firstDealerCard.innerHTML = ''
+     addCardElementToSpace(dealerCards[0], 'dealerCards')
+ 
+     // Continue giving cards to the dealer until he reaches 17 or he loses
+     // while (dealerPoints < 17) {
+     //     console.log('looping')
+     //     sleep(2000)
+     //     let randCard = getRandomCard()
+     //     giveDealerNewCard(randCard)
+     // }
+ 
+     let timerId = setInterval(() => {
+         if (dealerPoints >= 17) {
+             clearInterval(timerId)
+             declareWinner()
+             console.log(dealerPoints)
+             console.log(playerPoints)
+         } else {
+             let randCard = getRandomCard()
+             giveDealerNewCard(randCard)
+         }
+     }, 1000)
 }
 
 
