@@ -127,6 +127,8 @@ const giveDealerNewCard = (card) => {
     }
 }
 
+// calculate points for each player
+
 // 1 - start the game
 const startNewGame = () => {
     
@@ -207,7 +209,28 @@ const standButtonClicked = () => {
 }
 
 
-// 4 - add DOM events
+// 4 - connecting the buttons with DOM events
+let currentDeck = generateNewDeck()
+const startGameBtn = document.getElementById('startGame')
+const hitBtn = document.getElementById('hitButton')
+const standBtn = document.getElementById('standButton')
+const mainText = document.querySelector('#message h2')
 
+window.addEventListener("DOMContentLoaded", () => {
+    
+    // Connect startGameBtn with startNewGame()
+    startGameBtn.addEventListener('click', (event) => {
+        startNewGame()
+    })
 
-// calculate points for each player
+    // Connect hit Button with hitButtonClicked()
+    hitBtn.addEventListener('click', (event) => {
+        hitButtonClicked()
+    })
+
+    // Connect standBtn with standButtonClicked()
+    standBtn.addEventListener('click', (event) => {
+        standButtonClicked()
+    })
+})
+
