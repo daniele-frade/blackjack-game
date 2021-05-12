@@ -15,12 +15,12 @@ const generateNewDeck = () => {
     const cardValues = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
     const cardFaces = ['s', 'd', 'c', 'h']
 
-    // Use https://github.com/cardmeister/cardmeister.github.io thus 
-    // Create an array of "As", "Ad", "Ac", "Ah", "1s", "1d" ... and so on
+    // use https://github.com/cardmeister/cardmeister.github.io thus 
+    // create an array of "As", "Ad", "Ac", "Ah", "1s", "1d" ... and so on
 
     const allCards = []
 
-    // Building the allCards array
+    // building the allCards array
     for (let i in cardValues) {
         let card = cardValues[i]
 
@@ -30,7 +30,6 @@ const generateNewDeck = () => {
             allCards.push(actualCard)
         }
     }
-
     return allCards
 }
 
@@ -67,10 +66,10 @@ const addCardElementToSpace = (card, spaceId) => {
 }
 
 // get random card from the deck
-// and remove that card from the current deck
 const getRandomCard = () => {
     const randomCardIndex = Math.floor(Math.random() * currentDeck.length)
     const randomCard = currentDeck[randomCardIndex]
+    // remove that card from the current deck
     currentDeck.splice(randomCardIndex, 1)
     return randomCard
 }
@@ -80,7 +79,7 @@ const givePlayerNewCard = (card) => {
     playerCards.push(card)
     addCardElementToSpace(card, 'playerCards')
 
-    // Remove last char - this gives us 'A', '1', '2'.....'10', 'J', 'Q', 'K'
+    // remove last char - this gives us 'A', '1', '2'.....'10', 'J', 'Q', 'K'
     let cardValue = card.slice(0, -1)
 
     if (cardValue > 'A' && cardValue < 'X') {
@@ -98,7 +97,7 @@ const givePlayerNewCard = (card) => {
         playerPoints += numValue
     }
 
-    // Last minute check for ace usage
+    // last minute check for ace usage
     if (playerPoints > 21 && playerIsUsingAce) {
         playerPoints -= 10
     }
@@ -109,7 +108,7 @@ const giveDealerNewCard = (card) => {
     dealerCards.push(card)
     addCardElementToSpace(card, 'dealerCards')
 
-    // Remove last char - this gives us 'A', '1', '2'.....'10', 'J', 'Q', 'K'
+    // remove last char - this gives us 'A', '1', '2'.....'10', 'J', 'Q', 'K'
     let cardValue = card.slice(0, -1)
 
     if (cardValue > 'A' && cardValue < 'X') {
@@ -127,28 +126,28 @@ const giveDealerNewCard = (card) => {
         dealerPoints += numValue
     }
 
-    // Last minute check for ace usage
+    // last minute check for ace usage
     if (dealerPoints > 21 && dealerIsUsingAce) {
         dealerPoints -= 10
     }
 }
 
-// check and ceclare winner
+// check and declare winner
 const declareWinner = () => {
     resetButtonsForNewGame()
 
     if (dealerPoints > 21 || playerPoints > dealerPoints) {
-        mainText.textContent = "You WON. Play Again???"
+        mainText.textContent = 'You WON. Play Again???'
     } else if (dealerPoints > playerPoints) {
-        mainText.textContent = "You LOST. Play Again???"
+        mainText.textContent = 'You LOST. Play Again???'
     } else {
-        mainText.textContent = "DRAW. Play Again???"
+        mainText.textContent = 'DRAW. Play Again???'
     }
 }
 
 // reset for a new game
 const resetButtonsForNewGame = () => {
-    // Disable all the buttons
+    // disable all the buttons
     hitBtn.disabled = true
     standBtn.disabled = true
     startGameBtn.removeAttribute('disabled')
@@ -158,17 +157,17 @@ const resetButtonsForNewGame = () => {
 // 1 - start the game
 const startNewGame = () => {
     
-    // Reset UI (disable Start playing, and enable hit/stand btns)
+    // reset UI (disable start playing btn, and enable hit/stand btns)
     startGameBtn.disabled = true
     hitBtn.removeAttribute('disabled')
     standBtn.removeAttribute('disabled')
 
-    // Reset UI cards
+    // reset UI cards
     let emptySpace = '<div class="card empty"></div><div class="card empty"></div><div class="card empty"></div><div class="card empty"></div>'
     document.querySelector('#dealerCards').innerHTML = emptySpace
     document.querySelector('#playerCards').innerHTML = emptySpace
 
-    // Reset both player and dealer arrays and points
+    // reset both player and dealer arrays and points
     dealerCards = []
     dealerPoints = 0
     dealerIsUsingAce = false
@@ -176,10 +175,10 @@ const startNewGame = () => {
     playerPoints = 0
     playerIsUsingAce = false
 
-    // Change text
+    // change text
     mainText.textContent = "Hit or Stand ???"
 
-    // Generate 4 random cards
+    // generate 4 random cards
     let randCard1 = getRandomCard()
     let randCard2 = getRandomCard()
     let randCard3 = getRandomCard()
@@ -191,15 +190,11 @@ const startNewGame = () => {
     giveDealerNewCard(randCard2)
     giveDealerNewCard(randCard4)
 
-    // Place a closed card on top of dealer's first card
+    // place a closed card on top of dealer's first card
     const firstDealerCardSpace = document.querySelector('#dealerCards .card')
     const cardImage = createCardElement('0')
     firstDealerCardSpace.appendChild(cardImage)
-
-    console.log(dealerPoints)
-    console.log(playerPoints)
 }
-
 
 // 2 - create button hit
 const hitButtonClicked = () => {
@@ -217,39 +212,30 @@ const hitButtonClicked = () => {
 // 3 - create button stand
 const standButtonClicked = () => {
     
-     // Disable "Hit" and "Stand" buttons
-     hitBtn.disabled = true
-     standBtn.disabled = true
- 
-     // Flip Dealer's closed card
-     let firstDealerCard = document.querySelector('#dealerCards .card')
-     firstDealerCard.classList.add('empty')
-     firstDealerCard.innerHTML = ''
-     addCardElementToSpace(dealerCards[0], 'dealerCards')
- 
-     // Continue giving cards to the dealer until he reaches 17 or he loses
-     // while (dealerPoints < 17) {
-     //     console.log('looping')
-     //     sleep(2000)
-     //     let randCard = getRandomCard()
-     //     giveDealerNewCard(randCard)
-     // }
- 
-     let timerId = setInterval(() => {
-         if (dealerPoints >= 17) {
-             clearInterval(timerId)
-             declareWinner()
-             console.log(dealerPoints)
-             console.log(playerPoints)
-         } else {
-             let randCard = getRandomCard()
-             giveDealerNewCard(randCard)
-         }
-     }, 1000)
+    // disable "Hit" and "Stand" buttons
+    hitBtn.disabled = true
+    standBtn.disabled = true
+
+    // flip Dealer's closed card
+    let firstDealerCard = document.querySelector('#dealerCards .card')
+    firstDealerCard.classList.add('empty')
+    firstDealerCard.innerHTML = ''
+    addCardElementToSpace(dealerCards[0], 'dealerCards')
+
+    let timerId = setInterval(() => {
+        if (dealerPoints >= 17) {
+            clearInterval(timerId)
+            declareWinner()
+            console.log(dealerPoints)
+            console.log(playerPoints)
+        } else {
+            let randCard = getRandomCard()
+            giveDealerNewCard(randCard)
+        }
+    }, 1000)
 }
 
-
-// 4 - connecting the buttons with DOM events
+// 4 - connect the buttons with DOM events
 let currentDeck = generateNewDeck()
 const startGameBtn = document.getElementById('startGame')
 const hitBtn = document.getElementById('hitButton')
@@ -258,19 +244,18 @@ const mainText = document.querySelector('#message h2')
 
 window.addEventListener("DOMContentLoaded", () => {
     
-    // Connect startGameBtn with startNewGame()
+    // connect startGameBtn with startNewGame()
     startGameBtn.addEventListener('click', (event) => {
         startNewGame()
     })
 
-    // Connect hit Button with hitButtonClicked()
+    // connect hit Button with hitButtonClicked()
     hitBtn.addEventListener('click', (event) => {
         hitButtonClicked()
     })
 
-    // Connect standBtn with standButtonClicked()
+    // connect standBtn with standButtonClicked()
     standBtn.addEventListener('click', (event) => {
         standButtonClicked()
     })
 })
-
