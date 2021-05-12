@@ -146,9 +146,14 @@ const declareWinner = () => {
     }
 }
 
-
 // reset for a new game
-
+const resetButtonsForNewGame = () => {
+    // Disable all the buttons
+    hitBtn.disabled = true
+    standBtn.disabled = true
+    startGameBtn.removeAttribute('disabled')
+    startGameBtn.textContent = "Yes, Play."
+}
 
 // 1 - start the game
 const startNewGame = () => {
