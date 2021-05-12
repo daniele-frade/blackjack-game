@@ -163,6 +163,10 @@ const startNewGame = () => {
     giveDealerNewCard(randCard2)
     giveDealerNewCard(randCard4)
 
+    // Place a closed card on top of dealer's first card
+    const firstDealerCardSpace = document.querySelector('#dealerCards .card')
+    const cardImage = createCardElement('0')
+    firstDealerCardSpace.appendChild(cardImage)
 
     console.log(dealerPoints)
     console.log(playerPoints)
