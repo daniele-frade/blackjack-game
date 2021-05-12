@@ -34,7 +34,7 @@ const generateNewDeck = () => {
     return allCards
 }
 
-// create the card element, kreturn html node for card
+// create the card element, return html node for card
 const createCardElement = (aCard) => {
     let cardEl = document.createElement('card-t')
     
@@ -133,9 +133,22 @@ const giveDealerNewCard = (card) => {
     }
 }
 
-// calculate points for each player
+// check and ceclare winner
+const declareWinner = () => {
+    resetButtonsForNewGame()
+
+    if (dealerPoints > 21 || playerPoints > dealerPoints) {
+        mainText.textContent = "You WON. Play Again???"
+    } else if (dealerPoints > playerPoints) {
+        mainText.textContent = "You LOST. Play Again???"
+    } else {
+        mainText.textContent = "DRAW. Play Again???"
+    }
+}
+
 
 // reset for a new game
+
 
 // 1 - start the game
 const startNewGame = () => {
@@ -181,6 +194,7 @@ const startNewGame = () => {
     console.log(dealerPoints)
     console.log(playerPoints)
 }
+
 
 // 2 - create button hit
 const hitButtonClicked = () => {
