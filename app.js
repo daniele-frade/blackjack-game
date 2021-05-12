@@ -5,7 +5,28 @@ let dealerCards = []
 let playerCards = []
 
 // generate a deck of cards
+const generateNewDeck = () => {
+    const cardValues = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+    const cardFaces = ['s', 'd', 'c', 'h']
 
+    // Use https://github.com/cardmeister/cardmeister.github.io thus 
+    // Create an array of "As", "Ad", "Ac", "Ah", "1s", "1d" ... and so on
+
+    const allCards = []
+
+    // Building the allCards array
+    for (let i in cardValues) {
+        let card = cardValues[i]
+
+        for (let j in cardFaces) {
+            let face = cardFaces[j]
+            let actualCard = card + face
+            allCards.push(actualCard)
+        }
+    }
+
+    return allCards
+}
 // start the game
 
 // return random card from the deck
