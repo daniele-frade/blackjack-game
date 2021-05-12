@@ -28,7 +28,7 @@ const generateNewDeck = () => {
     return allCards
 }
 
-// create the card element, return html node for card
+// create the card element, kreturn html node for card
 const createCardElement = (aCard) => {
     let cardEl = document.createElement('card-t')
     
@@ -71,6 +71,44 @@ const getRandomCard = () => {
 
 
 // 1 - start the game
+
+const startNewGame = () => {
+    
+    // Reset UI (disable Start playing, and enable hit/stand btns)
+    startGameBtn.disabled = true
+    hitBtn.removeAttribute('disabled')
+    standBtn.removeAttribute('disabled')
+
+    // Reset UI cards
+    let emptySpace = '<div class="card empty"></div><div class="card empty"></div><div class="card empty"></div><div class="card empty"></div>'
+    document.querySelector('#dealerCards').innerHTML = emptySpace
+    document.querySelector('#playerCards').innerHTML = emptySpace
+
+    // Reset both player and dealer arrays and points
+    dealerCards = []
+    dealerPoints = 0
+    dealerIsUsingAce = false
+    playerCards = []
+    playerPoints = 0
+    playerIsUsingAce = false
+
+    // Change text
+    mainText.textContent = "Hit or Stand ???"
+
+    // Generate 4 random cards
+    let randCard1 = getRandomCard()
+    let randCard2 = getRandomCard()
+    let randCard3 = getRandomCard()
+    let randCard4 = getRandomCard()
+    
+    givePlayerNewCard(randCard1)
+    givePlayerNewCard(randCard3)
+    
+    giveDealerNewCard(randCard2)
+    giveDealerNewCard(randCard4)
+
+   
+}
 
 // 2 - create button hit
 const hitButtonClicked = () => {
