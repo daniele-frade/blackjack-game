@@ -1,8 +1,14 @@
-// Steps: 
+// Blackjack //
 
-// store the cards
+// arrays of cards/points and Ace choice
 let dealerCards = []
+let dealerPoints = 0
+let dealerIsUsingAce = false
+
 let playerCards = []
+let playerPoints = 0
+let playerIsUsingAce = false
+
 
 // generate a deck of cards
 const generateNewDeck = () => {
@@ -60,7 +66,7 @@ const addCardElementToSpace = (card, spaceId) => {
     firstEmptySpace.classList.remove('empty')
 }
 
-// return random card from the deck
+// get random card from the deck
 // and remove that card from the current deck
 const getRandomCard = () => {
     const randomCardIndex = Math.floor(Math.random() * currentDeck.length)
@@ -128,6 +134,8 @@ const giveDealerNewCard = (card) => {
 }
 
 // calculate points for each player
+
+// reset for a new game
 
 // 1 - start the game
 const startNewGame = () => {
