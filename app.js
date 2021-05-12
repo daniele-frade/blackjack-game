@@ -35,7 +35,24 @@ const generateNewDeck = () => {
 
 
 
-// create the addCardElementToSpace
+// create the card element
+// return html node for card
+const createCardElement = (aCard) => {
+    let cardEl = document.createElement('card-t')
+    
+    if (aCard == '0') {
+        cardEl.setAttribute('rank', 0)
+        cardEl.setAttribute('backcolor', '#44F')
+        cardEl.setAttribute('backtext', "")
+    } else {
+        cardEl.setAttribute("cid", aCard)
+    }
+
+    return cardEl
+}
+
+
+// add the card element
 const addCardElementToSpace = (card, spaceId) => {
     const emptySpaces = document.querySelectorAll(`#${spaceId} .empty`)
 
