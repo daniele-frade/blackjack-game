@@ -33,10 +33,27 @@ const generateNewDeck = () => {
 
 // calculate points for each player
 
-// buttons hit and stand
+
 
 // create the addCardElementToSpace
+const addCardElementToSpace = (card, spaceId) => {
+    const emptySpaces = document.querySelectorAll(`#${spaceId} .empty`)
 
+    if (emptySpaces.length === 1) {
+        const newEmptySpace = document.createElement('div')
+        newEmptySpace.classList.add("card")
+        newEmptySpace.classList.add("empty")
+        document.getElementById(spaceId).appendChild(newEmptySpace)
+    }
+
+    const firstEmptySpace = emptySpaces[0]
+    const cardImage = createCardElement(card)
+    firstEmptySpace.appendChild(cardImage)
+    firstEmptySpace.classList.remove('empty')
+}
+
+
+// create button hit
 const hitButtonClicked = () => {
     // generate a new card
     const newCard = getRandomCard()
@@ -51,6 +68,7 @@ const hitButtonClicked = () => {
     // ??
 }
 
+// creat button stand
 const standButtonClicked = () => {
     
     // Disable "Hit" and "Stand" buttons
