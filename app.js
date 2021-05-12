@@ -27,16 +27,8 @@ const generateNewDeck = () => {
 
     return allCards
 }
-// start the game
 
-// return random card from the deck
-
-// calculate points for each player
-
-
-
-// create the card element
-// return html node for card
+// create the card element, return html node for card
 const createCardElement = (aCard) => {
     let cardEl = document.createElement('card-t')
     
@@ -50,7 +42,6 @@ const createCardElement = (aCard) => {
 
     return cardEl
 }
-
 
 // add the card element
 const addCardElementToSpace = (card, spaceId) => {
@@ -69,8 +60,19 @@ const addCardElementToSpace = (card, spaceId) => {
     firstEmptySpace.classList.remove('empty')
 }
 
+// return random card from the deck
+// and remove that card from the current deck
+const getRandomCard = () => {
+    const randomCardIndex = Math.floor(Math.random() * currentDeck.length)
+    const randomCard = currentDeck[randomCardIndex]
+    currentDeck.splice(randomCardIndex, 1)
+    return randomCard
+}
 
-// create button hit
+
+// 1 - start the game
+
+// 2 - create button hit
 const hitButtonClicked = () => {
     // generate a new card
     const newCard = getRandomCard()
@@ -85,7 +87,7 @@ const hitButtonClicked = () => {
     // ??
 }
 
-// creat button stand
+// 3 - creat button stand
 const standButtonClicked = () => {
     
     // Disable "Hit" and "Stand" buttons
@@ -103,3 +105,7 @@ const standButtonClicked = () => {
     // Dealer cannot stand below 17, also they stand between 17 and 20
 
 }
+
+
+
+// calculate points for each player
