@@ -69,9 +69,65 @@ const getRandomCard = () => {
     return randomCard
 }
 
+// give player new card
+const givePlayerNewCard = (card) => {
+    playerCards.push(card)
+    addCardElementToSpace(card, 'playerCards')
+
+    // Remove last char - this gives us 'A', '1', '2'.....'10', 'J', 'Q', 'K'
+    let cardValue = card.slice(0, -1)
+
+    if (cardValue > 'A' && cardValue < 'X') {
+        playerPoints += 10
+    } else if (cardValue === 'A') {
+        
+        if (playerPoints + 11 < 22) {
+            playerPoints += 11
+            playerIsUsingAce = true
+        } else {
+            playerPoints += 1
+        }
+    } else {
+        const numValue = parseInt(cardValue)
+        playerPoints += numValue
+    }
+
+    // Last minute check for ace usage
+    if (playerPoints > 21 && playerIsUsingAce) {
+        playerPoints -= 10
+    }
+}
+
+// give dealer new card
+const giveDealerNewCard = (card) => {
+    dealerCards.push(card)
+    addCardElementToSpace(card, 'dealerCards')
+
+    // Remove last char - this gives us 'A', '1', '2'.....'10', 'J', 'Q', 'K'
+    let cardValue = card.slice(0, -1)
+
+    if (cardValue > 'A' && cardValue < 'X') {
+        dealerPoints += 10
+    } else if (cardValue === 'A') {
+        
+        if (dealerPoints + 11 < 22) {
+            dealerPoints += 11
+            dealerIsUsingAce = true
+        } else {
+            dealerPoints += 1
+        }
+    } else {
+        const numValue = parseInt(cardValue)
+        dealerPoints += numValue
+    }
+
+    // Last minute check for ace usage
+    if (dealerPoints > 21 && dealerIsUsingAce) {
+        dealerPoints -= 10
+    }
+}
 
 // 1 - start the game
-
 const startNewGame = () => {
     
     // Reset UI (disable Start playing, and enable hit/stand btns)
