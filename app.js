@@ -137,11 +137,11 @@ const declareWinner = () => {
     resetButtonsForNewGame()
 
     if (dealerPoints > 21 || playerPoints > dealerPoints) {
-        mainText.textContent = 'You WON. Play Again???'
+        mainText.textContent = 'You WON. Play Again?'
     } else if (dealerPoints > playerPoints) {
-        mainText.textContent = 'You LOST. Play Again???'
+        mainText.textContent = 'You LOST. Play Again?'
     } else {
-        mainText.textContent = 'DRAW. Play Again???'
+        mainText.textContent = 'DRAW. Play Again?'
     }
 }
 
@@ -151,7 +151,7 @@ const resetButtonsForNewGame = () => {
     hitBtn.disabled = true
     standBtn.disabled = true
     startGameBtn.removeAttribute('disabled')
-    startGameBtn.textContent = "Yes, Play."
+    startGameBtn.textContent = "Yes, play!"
 }
 
 // 1 - start the game
@@ -176,7 +176,7 @@ const startNewGame = () => {
     playerIsUsingAce = false
 
     // change text
-    mainText.textContent = "Hit or Stand ???"
+    mainText.textContent = 'Hit or Stand?'
 
     // generate 4 random cards
     let randCard1 = getRandomCard()
@@ -205,7 +205,7 @@ const hitButtonClicked = () => {
     // check if user lost the game
     if (playerPoints > 21) {
         resetButtonsForNewGame()
-        mainText.textContent = "You LOST. Play Again???"
+        mainText.textContent = 'You LOST. Play Again?'
     }
 }
 
@@ -226,8 +226,6 @@ const standButtonClicked = () => {
         if (dealerPoints >= 17) {
             clearInterval(timerId)
             declareWinner()
-            console.log(dealerPoints)
-            console.log(playerPoints)
         } else {
             let randCard = getRandomCard()
             giveDealerNewCard(randCard)
