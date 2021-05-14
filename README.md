@@ -1,33 +1,33 @@
 <h1>Blackjack Game App</h1>
 
-<h3>Goals:</h3>
 
-Implementing Blackjack game with Vanilla Javascript + HTML/CSS
-
-<br>
-
-
-<h3>Link:</h3>
-
-https://daniele-frade.github.io/blackjack-game/
+After three weeks of intensive lectures in HTML/CSS/JS, I took a shot at combining these three technologies into building a simple game such as Blackjack.
 
 <br>
 
+You can play the game at this link: https://daniele-frade.github.io/blackjack-game/
 
-<h3>Coding languages:</h3>
+<br>
 
+<h3>Used technologies:</h3>
+<br>
 <ul>
     <li>HTML</li>
     <li>CSS</li>
     <li>Javascript</li>
-    <li>External Javascript library for cards elements: https://github.com/cardmeister/cardmeister.github.io</li>
 </ul>
 
 <br>
 
+<h3>Third part dependencies:</h3>
+<br>
+Javascript library for displaying playing cards as images: https://github.com/cardmeister/cardmeister.github.io
+
+<br>
+<br>
 
 <h3>Features:</h3>
-
+<br>
 <ul>
 <li>Start the game</li>
 <li>Hit or stand</li>
@@ -36,7 +36,6 @@ https://daniele-frade.github.io/blackjack-game/
 </ul>
 
 <br>
-
 
 <h3>Wireframe:</h3>
 

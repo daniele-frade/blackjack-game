@@ -1,7 +1,5 @@
 // Blackjack Game //
 
-////////fix the cover card when you lose without stand
-
 // arrays of cards/points and Ace choice
 //let dealerCards = []
 let dealerPoints = 0
