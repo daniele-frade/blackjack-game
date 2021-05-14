@@ -1,14 +1,15 @@
-// Blackjack //
+// Blackjack Game //
+
+////////fix the cover card when you lose without stand
 
 // arrays of cards/points and Ace choice
-let dealerCards = []
+//let dealerCards = []
 let dealerPoints = 0
 let dealerIsUsingAce = false
 
-let playerCards = []
+//let playerCards = []
 let playerPoints = 0
 let playerIsUsingAce = false
-
 
 // generate a deck of cards
 const generateNewDeck = () => {
@@ -76,7 +77,7 @@ const getRandomCard = () => {
 
 // give player new card
 const givePlayerNewCard = (card) => {
-    playerCards.push(card)
+    //playerCards.push(card)
     addCardElementToSpace(card, 'playerCards')
 
     // remove last char - this gives us 'A', '1', '2'.....'10', 'J', 'Q', 'K'
@@ -100,17 +101,19 @@ const givePlayerNewCard = (card) => {
     // last minute check for ace usage
     if (playerPoints > 21 && playerIsUsingAce) {
         playerPoints -= 10
+        playerIsUsingAce = false
     }
 }
 
 // give dealer new card
 const giveDealerNewCard = (card) => {
-    dealerCards.push(card)
+
     addCardElementToSpace(card, 'dealerCards')
 
     // remove last char - this gives us 'A', '1', '2'.....'10', 'J', 'Q', 'K'
     let cardValue = card.slice(0, -1)
 
+    // detecting whether it is J, Q or K
     if (cardValue > 'A' && cardValue < 'X') {
         dealerPoints += 10
     } else if (cardValue === 'A') {
@@ -129,6 +132,7 @@ const giveDealerNewCard = (card) => {
     // last minute check for ace usage
     if (dealerPoints > 21 && dealerIsUsingAce) {
         dealerPoints -= 10
+        dealerIsUsingAce = false
     }
 }
 
@@ -168,10 +172,10 @@ const startNewGame = () => {
     document.querySelector('#playerCards').innerHTML = emptySpace
 
     // reset both player and dealer arrays and points
-    dealerCards = []
+    //dealerCards = []
     dealerPoints = 0
     dealerIsUsingAce = false
-    playerCards = []
+    //playerCards = []
     playerPoints = 0
     playerIsUsingAce = false
 
@@ -217,10 +221,14 @@ const standButtonClicked = () => {
     standBtn.disabled = true
 
     // flip Dealer's closed card
-    let firstDealerCard = document.querySelector('#dealerCards .card')
-    firstDealerCard.classList.add('empty')
-    firstDealerCard.innerHTML = ''
-    addCardElementToSpace(dealerCards[0], 'dealerCards')
+    //let firstDealerCard = document.querySelector('#dealerCards .card')
+    //firstDealerCard.classList.add('empty')
+    //firstDealerCard.innerHTML = ''
+    //addCardElementToSpace(dealerCards[0], 'dealerCards')
+
+    // delete the cover card on the dealer to reveal his hidden card
+    const cardImages = document.getElementsByTagName('card-t')
+    cardImages[1].remove()
 
     let timerId = setInterval(() => {
         if (dealerPoints >= 17) {
