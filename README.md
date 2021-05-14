@@ -38,4 +38,4 @@ Javascript library for displaying playing cards as images: https://github.com/ca
 <br>
 
 
-<img src="blackjack.pnj">
+<img src="blackjack.png">
