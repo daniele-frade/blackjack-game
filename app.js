@@ -1,11 +1,10 @@
 // Blackjack Game //
 
-// arrays of cards/points and Ace choice
-//let dealerCards = []
+// keep track of dealer points and whether dealer has A counted as 11
 let dealerPoints = 0
 let dealerIsUsingAce = false
 
-//let playerCards = []
+// keep track of player points and whether player has A counted as 11
 let playerPoints = 0
 let playerIsUsingAce = false
 
@@ -75,7 +74,6 @@ const getRandomCard = () => {
 
 // give player new card
 const givePlayerNewCard = (card) => {
-    //playerCards.push(card)
     addCardElementToSpace(card, 'playerCards')
 
     // remove last char - this gives us 'A', '1', '2'.....'10', 'J', 'Q', 'K'
@@ -134,19 +132,6 @@ const giveDealerNewCard = (card) => {
     }
 }
 
-// check and declare winner
-const declareWinner = () => {
-    resetButtonsForNewGame()
-
-    if (dealerPoints > 21 || playerPoints > dealerPoints) {
-        mainText.textContent = 'You WON. Play Again?'
-    } else if (dealerPoints > playerPoints) {
-        mainText.textContent = 'You LOST. Play Again?'
-    } else {
-        mainText.textContent = 'DRAW. Play Again?'
-    }
-}
-
 // reset for a new game
 const resetButtonsForNewGame = () => {
     // disable all the buttons
@@ -169,11 +154,10 @@ const startNewGame = () => {
     document.querySelector('#dealerCards').innerHTML = emptySpace
     document.querySelector('#playerCards').innerHTML = emptySpace
 
-    // reset both player and dealer arrays and points
-    //dealerCards = []
+    // reset both player and dealer points and ACD
     dealerPoints = 0
     dealerIsUsingAce = false
-    //playerCards = []
+
     playerPoints = 0
     playerIsUsingAce = false
 
@@ -208,6 +192,9 @@ const hitButtonClicked = () => {
     if (playerPoints > 21) {
         resetButtonsForNewGame()
         mainText.textContent = 'You LOST. Play Again?'
+         // delete the cover card on the dealer to reveal his hidden card
+        const cardImages = document.getElementsByTagName('card-t')
+        cardImages[1].remove()
     }
 }
 
@@ -217,12 +204,6 @@ const standButtonClicked = () => {
     // disable "Hit" and "Stand" buttons
     hitBtn.disabled = true
     standBtn.disabled = true
-
-    // flip Dealer's closed card
-    //let firstDealerCard = document.querySelector('#dealerCards .card')
-    //firstDealerCard.classList.add('empty')
-    //firstDealerCard.innerHTML = ''
-    //addCardElementToSpace(dealerCards[0], 'dealerCards')
 
     // delete the cover card on the dealer to reveal his hidden card
     const cardImages = document.getElementsByTagName('card-t')
@@ -239,7 +220,20 @@ const standButtonClicked = () => {
     }, 1000)
 }
 
-// 4 - connect the buttons with DOM events
+// 4 -  check and declare winner
+const declareWinner = () => {
+    resetButtonsForNewGame()
+
+    if (dealerPoints > 21 || playerPoints > dealerPoints) {
+        mainText.textContent = 'You WON. Play Again?'
+    } else if (dealerPoints > playerPoints) {
+        mainText.textContent = 'You LOST. Play Again?'
+    } else {
+        mainText.textContent = 'DRAW. Play Again?'
+    }
+}
+
+// 5 - connect the buttons with DOM events
 let currentDeck = generateNewDeck()
 const startGameBtn = document.getElementById('startGame')
 const hitBtn = document.getElementById('hitButton')

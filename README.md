@@ -9,7 +9,7 @@ You can play the game at this link: https://daniele-frade.github.io/blackjack-ga
 
 <br>
 
-<h3>Used technologies:</h3>
+<h3>Technologies used:</h3>
 <br>
 <ul>
     <li>HTML</li>
@@ -37,6 +37,5 @@ Javascript library for displaying playing cards as images: https://github.com/ca
 
 <br>
 
-<h3>Wireframe:</h3>
 
-<img src="bjwireframe.png">
+<img src="blackjack.pnj">
